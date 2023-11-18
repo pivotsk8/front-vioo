@@ -1,7 +1,7 @@
 export const LoginPage = () => {
     return (
 
-        <div className="w-screen h-screen flex justify-center flex-col items-center ">
+        <div className="w-screen h-screen flex justify-center flex-col items-center">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="mx-auto h-10 w-auto"
