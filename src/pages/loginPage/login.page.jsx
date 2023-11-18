@@ -1,4 +1,32 @@
+import { useState } from 'react';
+import axios from 'axios';
+
 export const LoginPage = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const userData = {
+            email: email,
+            password: password
+        };
+
+        try {
+            const response = await axios.post('http://localhost:4000/api/auth/login', userData);
+            console.log(response);
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response);
+                console.log("server responded");
+            } else if (error.request) {
+                console.log("network error");
+            } else {
+                console.log(error);
+            }
+        }
+    };
     return (
 
         <div className="w-screen h-screen flex justify-center flex-col items-center">
@@ -14,7 +42,7 @@ export const LoginPage = () => {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm rounded-xl p-5 w-[300px]  bg-gray-700 space-y-3 shadow-[0_5px_10px_-5px_rgba(0,0,0,125)]">
-                <form className="space-y-6" action="#" method="POST">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Email address
@@ -26,7 +54,9 @@ export const LoginPage = () => {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className=" text-gray-900 text-sm rounded-lg  w-full p-2.5 outline-none"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none"
                                 placeholder="admin@example.com"
                             />
                         </div>
@@ -50,7 +80,9 @@ export const LoginPage = () => {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none"
                                 placeholder="admin@example.com"
                             />
                         </div>
