@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 //middleware
-import PrivateRoute from "./middleware/authMiddleware"
+import { PrivateRoute } from "./middleware/authMiddleware"
 
 //Layouts
 import { LoginLayout } from "./layout/login.layout";
@@ -33,7 +33,7 @@ const routes = createBrowserRouter([
     },
     {
         path: "/products",
-        element: <PrivateRoute />,
+        element: < PrivateRoute />,
         errorElement: <NotFoundPage />,
         children: [
             {

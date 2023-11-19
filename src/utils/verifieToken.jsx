@@ -1,13 +1,12 @@
-import axios from "axios"
+import AuthApi from "../api/AuthApi"
+
 export async function VerifyToken() {
-    const token = localStorage.getItem("TOKEN")
-    const { data } = await axios.interceptors.request.use((config) => {
-        if (token) {
-            if (token) {
-                config.headers.Authorization = `Bearer ${token}`
-            }
-            return config
-        }
-    })
+    const { data } = await AuthApi.auth()
+    if (!data) {
+        return false;
+    }
     return data
 }
+
+
+
