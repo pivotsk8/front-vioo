@@ -1,7 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const LoginPage = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,16 +19,14 @@ export const LoginPage = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:4000/api/auth/login', userData);
-            console.log(response);
+            const { data: { token } } = await axios.post('http://localhost:4000/api/auth/login', userData);
+            localStorage.setItem('TOKEN', token)
+            navigate('/products')
         } catch (error) {
             if (error.response) {
-                console.log(error.response);
-                console.log("server responded");
-            } else if (error.request) {
-                console.log("network error");
-            } else {
-                console.log(error);
+                toast.error(error.response.data.msg, {
+                    theme: "colored"
+                });
             }
         }
     };
@@ -99,6 +102,7 @@ export const LoginPage = () => {
                 </form>
 
             </div>
+            <ToastContainer />
         </div>
     )
 }
