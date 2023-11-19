@@ -1,39 +1,84 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, useNavigate, Link } from "react-router-dom";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { faHome } from "@fortawesome/free-solid-svg-icons/faHome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
 
-export const ProductsLayout = () => {
+const SearchContext = React.createContext();
+function ProductsLayout() {
+    const navigate = useNavigate();
+    const [product, setProduct] = useState("");
+
+
+    const signOut = () => {
+        localStorage.clear();
+        navigate('/');
+    };
+
     return (
-        <>
-            <nav className="bg-white border-gray-200 dark:bg-gray-900 ">
-                <div className="min-w-full flex flex-wrap items-center justify-between mx-auto p-4 space-x-10">
-                    <input
-                        id="search-product"
-                        name="products"
-                        type="text"
-                        className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 p-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6 "
-                        placeholder="Buscar"
-                    />
-                    <div
-                        className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-                        id="navbar-cta"
-                    >
-                        <ul className="flex flex-col items-center font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                            <li>
-                                <NavLink
-                                    to="/register"
-                                    className={({ isActive }) => {
-                                        return `${isActive ? "text-blue-800" : "text-white"
-                                            } block py-2 pl-3 pr-4 rounded`;
-                                    }}
-                                    aria-current="page"
-                                >
-                                    Home
-                                </NavLink>
-                            </li>
-                        </ul>
+        <div className="bg-white">
+
+            <header className="relative bg-white">
+                <p className="flex h-10 items-center justify-center  dark:bg-gray-900 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+                    E-commer VIIO
+                </p>
+
+                <nav aria-label="Top" className="flex flex-col justify-between mx-auto max-w-8xl px-4 sm:px-6 lg:px-2 ">
+                    <div className="border-b border-gray-200">
+                        <div className="flex h-16 items-center ">
+                            {/* Logo */}
+                            <div className="ml-1 flex lg:ml-3 md:pr-2 ">
+                                <a href="#">
+                                    <img
+                                        className="h-8 w-auto hidden sm:block "
+                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                        alt=""
+                                    />
+                                </a>
+                            </div>
+
+                            {/* Search */}
+                            <div className="flex lg:ml-20 w-full" >
+                                <div className="flex items-center justify-between space-x-1 xl:w-5/6 sm:w-full ">
+                                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+                                    <input
+                                        id="search"
+                                        name="search"
+                                        type="string"
+                                        value={product || ""}
+                                        onChange={(e) => setProduct(e.target.value)}
+                                        className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  p-2.5 outline-none"
+                                        placeholder="Busca tu producto"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="ml-auto flex items-center">
+                                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                                    <button className="text-sm font-medium text-gray-700 hover:text-gray-800" onClick={signOut}>
+                                        Sign out
+                                    </button>
+                                    <span className=" flex items-center justify-between h-6 w-px bg-gray-200 " aria-hidden="true" />
+                                    <Link to="/products" className="hover:underline">
+                                        <FontAwesomeIcon icon={faHome} className="mr-2" />
+                                        Go Home
+                                    </Link>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </nav>
-            <Outlet />
-        </>
-    );
+                </nav>
+            </header>
+            <SearchContext.Provider value={product}>
+                <Outlet />
+            </SearchContext.Provider>
+
+        </div>
+    )
 }
+
+export {
+    SearchContext,
+    ProductsLayout
+} 

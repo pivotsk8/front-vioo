@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios'
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { SearchContext } from '../../layout/products.layout';
+
 
 
 export const ProductsListPage = () => {
     const [data, setData] = useState([]);
+    const searchValue = useContext(SearchContext) || "";
 
     useEffect(() => {
+        console.log(searchValue)
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:4000/api/cart');
@@ -17,7 +21,7 @@ export const ProductsListPage = () => {
         };
 
         fetchData();
-    }, []);
+    }, [searchValue]);
     return (
         <div className="bg-gray-200">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
