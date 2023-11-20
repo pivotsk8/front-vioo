@@ -26,6 +26,6 @@ Para correr el proyecto, puedes utilizar el siguiente comando:
 ## Configuración del entorno
 
 Debes crear un archivo `.env` en el que pondrás la siguiente variable:
-
+VITE_API_URL = http://localhost:`{numero del puerto del back}`/api
 
 Reemplaza `{numero del puerto del back}` con el número de puerto de tu backend.
