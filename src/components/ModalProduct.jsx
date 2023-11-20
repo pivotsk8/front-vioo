@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 export const ProductModal = ({ selectedProduct, open, setOpen }) => {
     return (
@@ -46,4 +47,10 @@ export const ProductModal = ({ selectedProduct, open, setOpen }) => {
             </Dialog>
         </Transition.Root>
     );
+};
+
+ProductModal.propTypes = {
+    selectedProduct: PropTypes.object.isRequired,
+    open: PropTypes.bool.isRequired,
+    setOpen: PropTypes.func.isRequired,
 };
