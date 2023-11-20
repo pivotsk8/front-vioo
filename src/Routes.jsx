@@ -9,6 +9,7 @@ import { LoginLayout } from "./layout/login.layout";
 //Pages
 import { ProductsListPage } from "./pages/productsPages/productsList.page";
 import { LoginPage } from "./pages/loginPage/login.page";
+import { ConfirmAccountPage } from "./pages/loginPage/confirmAccount.page";
 import { RegisterPage } from "./pages/loginPage/register.page";
 import { NotFoundPage } from "./pages/not-found.page";
 
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
             {
                 path: "/register",
                 element: < RegisterPage />,
+            },
+            {
+                path: "/verify/:token",
+                element: < ConfirmAccountPage />,
             }
 
         ]
