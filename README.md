@@ -1,8 +1,31 @@
-# React + Vite
+# Frontend prueba técnica VIIO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto fue creado con Vite y React.
 
-Currently, two official plugins are available:
+## Dependencias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Se utilizaron las siguientes dependencias:
+
+- axios: ^1.6.2
+- prop-types: ^15.8.1
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- react-router-dom
+
+Además de estas, se pueden utilizar otras dependencias según las necesidades del proyecto.
+
+## CSS
+
+Para el CSS se utiliza Tailwind.
+
+## Cómo correr el proyecto
+
+Para correr el proyecto, puedes utilizar el siguiente comando:
+
+
+## Configuración del entorno
+
+Debes crear un archivo `.env` en el que pondrás la siguiente variable:
+
+
+Reemplaza `{numero del puerto del back}` con el número de puerto de tu backend.
