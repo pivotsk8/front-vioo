@@ -10,11 +10,9 @@ export const ConfirmAccountPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-
+      
         const fetchData = async () => {
-
             try {
-                console.log(token)
                 const { data } = await AuthAPI.verifyAccount(token);
                 toast.success(data.msg, { theme: 'colored' });
                 setTimeout(function () {
@@ -29,7 +27,8 @@ export const ConfirmAccountPage = () => {
         };
 
         fetchData();
-    }, [token])
+       
+    }, [])
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
