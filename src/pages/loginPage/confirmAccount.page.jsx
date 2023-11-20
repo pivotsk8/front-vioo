@@ -10,7 +10,9 @@ export const ConfirmAccountPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+
         const fetchData = async () => {
+
             try {
                 console.log(token)
                 const { data } = await AuthAPI.verifyAccount(token);
@@ -27,7 +29,7 @@ export const ConfirmAccountPage = () => {
         };
 
         fetchData();
-    }, [navigate, token])
+    }, [token])
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
