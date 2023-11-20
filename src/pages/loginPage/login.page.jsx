@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import AuthApi from "../../api/AuthAPI"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,7 +19,7 @@ export const LoginPage = () => {
         };
 
         try {
-            const { data: { token } } = await axios.post('http://localhost:4000/api/auth/login', userData);
+            const { data: { token } } = await AuthApi.login(userData)
             localStorage.setItem('TOKEN', token)
             navigate('/products')
         } catch (error) {
@@ -48,7 +48,7 @@ export const LoginPage = () => {
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Email address
+                            Email
                         </label>
                         <div className="mt-2">
                             <input
@@ -68,13 +68,8 @@ export const LoginPage = () => {
                     <div>
                         <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Password
+                                Contraseña
                             </label>
-                            <div className="text-sm">
-                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    Forgot password?
-                                </a>
-                            </div>
                         </div>
                         <div className="mt-2">
                             <input

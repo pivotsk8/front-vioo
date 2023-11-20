@@ -1,4 +1,4 @@
-import AuthApi from "../api/AuthApi"
+import AuthApi from "../api/AuthAPI"
 
 export async function VerifyToken() {
     const { data } = await AuthApi.auth()

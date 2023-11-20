@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import AuthApi from "../../api/AuthAPI"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -30,7 +30,7 @@ export const RegisterPage = () => {
                 return
             }
 
-            const { data } = await axios.post('http://localhost:4000/api/auth/register', userData);
+            const { data } = await AuthApi.register(userData);
             toast.success(data.msg, {
                 theme: "colored"
             })
