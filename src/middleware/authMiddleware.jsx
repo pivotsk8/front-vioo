@@ -1,39 +1,3 @@
-// import { VerifyToken } from '../utils/verifieToken'
-// import { ProductsLayout } from '../layout/products.layout'
-// import { useState, useEffect } from 'react';
-// import { Navigate } from 'react-router-dom'
-
-// export const PrivateRoute = () => {
-//     const [isTokenVerified, setIsTokenVerified] = useState({});
-
-//     useEffect(() => {
-//         VerifyToken().then(p => {
-//             setIsTokenVerified(p);
-//         });
-//     }, []);
-
-//     return (
-//         isTokenVerified.data?.user ? <ProductsLayout /> : <Navigate to={"/"} />
-//     )
-// }
-
-
-// import { VerifyToken } from '../utils/verifieToken'
-// import { ProductsLayout } from '../layout/products.layout'
-// import { useState } from 'react';
-// import { Navigate } from 'react-router-dom'
-
-// export const PrivateRoute = async () => {
-
-
-//     const data = await VerifyToken()
-//     console.log(data)
-//     const token = { ver: true }
-//     return (
-//         token.ver ? <ProductsLayout /> : <Navigate to={"/"} />
-//     )
-// }
-
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -57,7 +21,7 @@ export const PrivateRoute = () => {
 
 
     if (isLoading) {
-        return <NotForbiddenPage />; // O cualquier otro componente de carga que quieras renderizar
+        return <NotForbiddenPage />;
     }
 
     return (
